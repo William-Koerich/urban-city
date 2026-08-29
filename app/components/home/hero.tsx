@@ -1,14 +1,16 @@
 import { Container } from "@/app/components/ui/container";
 import { Button } from "@/app/components/ui/button";
 import { PlaceholderImage } from "@/app/components/ui/placeholder-image";
+import { HeroSceneLoader } from "@/app/components/home/hero-scene-loader";
 import { produtos } from "@/lib/data/products";
 
 export function Hero() {
   const vitrine = produtos.slice(0, 3);
 
   return (
-    <section className="border-b border-line">
-      <Container className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
+    <section className="relative overflow-hidden border-b border-line">
+      <HeroSceneLoader />
+      <Container className="relative grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
         <div>
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.3em] text-accent">
             Coleção Inverno 2026
@@ -34,17 +36,17 @@ export function Hero() {
           <PlaceholderImage
             seed={vitrine[0]?.id ?? "hero-1"}
             label={vitrine[0]?.nome}
-            className="col-span-2 aspect-[16/10] rounded-2xl"
+            className="col-span-2 aspect-16/10 rounded-2xl"
           />
           <PlaceholderImage
             seed={vitrine[1]?.id ?? "hero-2"}
             label={vitrine[1]?.nome}
-            className="aspect-[4/5] rounded-2xl"
+            className="aspect-4/5 rounded-2xl"
           />
           <PlaceholderImage
             seed={vitrine[2]?.id ?? "hero-3"}
             label={vitrine[2]?.nome}
-            className="aspect-[4/5] rounded-2xl"
+            className="aspect-4/5 rounded-2xl"
           />
         </div>
       </Container>

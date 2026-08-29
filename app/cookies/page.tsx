@@ -15,6 +15,13 @@ const cookies = [
     tipo: "Essencial",
   },
   {
+    nome: "urbancity-sessao-id",
+    finalidade:
+      "Identifica sua visita (não você) para entender o caminho percorrido no site — quais páginas viu, em que ordem. Some quando você fecha a aba.",
+    duracao: "Sessão (apagado ao fechar a aba)",
+    tipo: "Analítico",
+  },
+  {
     nome: "(exemplo) _ga",
     finalidade: "Métricas de uso agregadas, quando a análise for ativada.",
     duracao: "13 meses",

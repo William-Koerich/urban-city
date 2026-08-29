@@ -50,7 +50,11 @@ export default async function ProdutoPage({
             Quer essa peça na sua loja? Fale com o representante da sua
             região para condições e disponibilidade.
           </p>
-          <Button href="/representantes" variant="secondary" className="shrink-0">
+          <Button
+            href={`/representantes?produto=${produto.slug}`}
+            variant="secondary"
+            className="shrink-0"
+          >
             Falar com representante
           </Button>
         </div>

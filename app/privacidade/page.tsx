@@ -16,12 +16,12 @@ const secoes = [
   {
     titulo: "2. Quais dados coletamos",
     texto:
-      "Dados de navegação (páginas visitadas, dispositivo, origem do acesso) e dados fornecidos voluntariamente em formulários de contato, como nome, email e telefone.",
+      "Dados de navegação (páginas visitadas, sequência de páginas dentro da mesma visita, origem do acesso — Google, Instagram, direto), localização aproximada (país/estado/cidade, calculada a partir do endereço IP — não coletamos localização precisa de GPS nem pedimos permissão de localização do navegador), e dados fornecidos voluntariamente em formulários, como nome, email e telefone.",
   },
   {
     titulo: "3. Para que usamos os dados",
     texto:
-      "Para responder contatos e solicitações, conectar visitantes a representantes da região, melhorar o site e cumprir obrigações legais.",
+      "Para responder contatos e solicitações, conectar visitantes a representantes da região, entender quais produtos e regiões geram mais interesse, melhorar o site e cumprir obrigações legais. Esses dados de navegação só são coletados depois que você aceita o aviso de cookies exibido no site.",
   },
   {
     titulo: "4. Compartilhamento",

@@ -1,15 +1,22 @@
+"use client";
+
 import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 import type { Produto } from "@/lib/types";
 import { PlaceholderImage } from "@/app/components/ui/placeholder-image";
 
 export function ProductCard({ produto }: { produto: Produto }) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <Link href={`/catalogo/${produto.slug}`} className="group block">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-        <PlaceholderImage
-          seed={produto.id}
-          className="h-full w-full transition-transform duration-500 group-hover:scale-105"
-        />
+      <motion.div
+        className="relative aspect-4/5 overflow-hidden rounded-2xl"
+        whileHover={reduceMotion ? undefined : { scale: 1.03 }}
+        whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+      >
+        <PlaceholderImage seed={produto.id} className="h-full w-full" />
         {produto.destaque && (
           <span className="absolute left-3 top-3 rounded-full bg-accent px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-accent-foreground">
             Destaque
@@ -25,7 +32,7 @@ export function ProductCard({ produto }: { produto: Produto }) {
             />
           ))}
         </div>
-      </div>
+      </motion.div>
       <div className="mt-3 flex items-start justify-between gap-2">
         <div>
           <p className="text-sm text-foreground">{produto.nome}</p>

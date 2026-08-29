@@ -2,6 +2,7 @@ import { Container } from "@/app/components/ui/container";
 import { SectionHeading } from "@/app/components/ui/section-heading";
 import { Button } from "@/app/components/ui/button";
 import { ProductCard } from "@/app/components/product/product-card";
+import { Reveal } from "@/app/components/motion/reveal";
 import { produtos } from "@/lib/data/products";
 
 export function FeaturedCollection() {
@@ -22,8 +23,10 @@ export function FeaturedCollection() {
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4">
-          {destaques.map((produto) => (
-            <ProductCard key={produto.id} produto={produto} />
+          {destaques.map((produto, i) => (
+            <Reveal key={produto.id} delay={i * 0.08}>
+              <ProductCard produto={produto} />
+            </Reveal>
           ))}
         </div>
       </Container>

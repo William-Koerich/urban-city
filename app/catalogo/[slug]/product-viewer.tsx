@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PlaceholderImage } from "@/app/components/ui/placeholder-image";
 import type { Produto } from "@/lib/types";
+import { registrarEvento } from "@/lib/metrics/track";
 
 export function ProductViewer({ produto }: { produto: Produto }) {
   const [corIndex, setCorIndex] = useState(0);
@@ -10,6 +11,14 @@ export function ProductViewer({ produto }: { produto: Produto }) {
   const [tamanho, setTamanho] = useState(
     produto.tamanhos[Math.floor(produto.tamanhos.length / 2)]?.sigla
   );
+
+  useEffect(() => {
+    registrarEvento({
+      tipo: "visualizacao_produto",
+      produtoSlug: produto.slug,
+      produtoNome: produto.nome,
+    });
+  }, [produto.slug, produto.nome]);
 
   const cor = produto.cores[corIndex];
 
@@ -25,7 +34,7 @@ export function ProductViewer({ produto }: { produto: Produto }) {
         <PlaceholderImage
           seed={`${produto.id}-${cor.nome}-${imagemIndex}`}
           label={`${cor.nome} · foto ${imagemIndex + 1}`}
-          className="aspect-[4/5] rounded-2xl"
+          className="aspect-4/5 rounded-2xl"
         />
         <div className="mt-3 flex gap-2">
           {cor.imagens.map((_, i) => (

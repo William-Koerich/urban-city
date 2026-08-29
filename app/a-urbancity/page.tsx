@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Container } from "@/app/components/ui/container";
 import { SectionHeading } from "@/app/components/ui/section-heading";
 import { PlaceholderImage } from "@/app/components/ui/placeholder-image";
+import { Reveal } from "@/app/components/motion/reveal";
+import { ValoresScroll } from "@/app/a-urbancity/valores-scroll";
 
 export const metadata: Metadata = {
   title: "A UrbanCity",
@@ -42,12 +44,14 @@ export default function AUrbanCityPage() {
 
       <section className="border-b border-line py-16 sm:py-24">
         <Container className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <PlaceholderImage
-            seed="fabrica"
-            label="Estrutura fabril"
-            className="aspect-[4/3] rounded-2xl"
-          />
-          <div>
+          <Reveal>
+            <PlaceholderImage
+              seed="fabrica"
+              label="Estrutura fabril"
+              className="aspect-4/3 rounded-2xl"
+            />
+          </Reveal>
+          <Reveal delay={0.1}>
             <h2 className="font-display text-3xl">Estrutura fabril</h2>
             <p className="mt-4 text-muted">
               Produção verticalizada: modelagem, corte, costura e
@@ -58,21 +62,14 @@ export default function AUrbanCityPage() {
               loja de representantes ou o carrinho de compras entrarem no
               ar.
             </p>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
       <section className="py-16 sm:py-24">
         <Container>
           <SectionHeading eyebrow="O que nos diferencia" title="Valores" />
-          <div className="mt-10 grid gap-8 sm:grid-cols-3">
-            {valores.map((valor) => (
-              <div key={valor.titulo}>
-                <h3 className="font-display text-xl">{valor.titulo}</h3>
-                <p className="mt-2 text-sm text-muted">{valor.texto}</p>
-              </div>
-            ))}
-          </div>
+          <ValoresScroll valores={valores} />
         </Container>
       </section>
     </>
