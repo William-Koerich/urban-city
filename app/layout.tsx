@@ -7,8 +7,7 @@ import { SiteFooter } from "@/app/components/layout/site-footer";
 import { CookieConsent } from "@/app/components/layout/cookie-consent";
 import { AnalyticsScripts } from "@/app/components/layout/analytics-scripts";
 import { AnalyticsBoot } from "@/app/components/layout/analytics-boot";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+import { siteUrl } from "@/lib/site-url";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
