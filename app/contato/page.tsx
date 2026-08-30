@@ -24,7 +24,7 @@ export default function ContatoPage() {
           description="Para lojistas e representantes, veja a página de Representantes — aqui estão nossos canais institucionais."
         />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {redesSociais.map((canal) => (
             <a
               key={canal.href}

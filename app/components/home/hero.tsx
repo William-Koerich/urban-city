@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-line">
       <HeroSceneLoader />
-      <Container className="relative grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
+      <Container className="relative grid grid-cols-1 items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
         <div>
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.3em] text-accent">
             Coleção Inverno 2026

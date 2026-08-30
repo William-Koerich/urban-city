@@ -28,7 +28,7 @@ export function ProductViewer({ produto }: { produto: Produto }) {
   }
 
   return (
-    <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
       {/* Galeria */}
       <div>
         <PlaceholderImage
@@ -114,7 +114,7 @@ export function ProductViewer({ produto }: { produto: Produto }) {
         </div>
 
         {/* Composição e cuidados */}
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
               Composição

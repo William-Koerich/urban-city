@@ -51,7 +51,7 @@ export default async function MetricasPage() {
           depender do que os representantes reportam em campo.
         </p>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-5">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-5">
           <StatTile rotulo="Sessões" valor={dados.totais.sessoes} />
           <StatTile rotulo="Visualizações de produto" valor={dados.totais.visualizacoes} />
           <StatTile rotulo="Contatos via WhatsApp" valor={dados.totais.contatosWhatsapp} />
@@ -74,7 +74,7 @@ export default async function MetricasPage() {
           </div>
         </div>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <BarList
             titulo="Produtos mais vistos"
             dados={dados.produtosMaisVistos}

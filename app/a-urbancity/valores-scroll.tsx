@@ -49,7 +49,7 @@ export function ValoresScroll({ valores }: { valores: Valor[] }) {
   );
 
   return (
-    <div ref={container} className="mt-10 grid gap-8 sm:grid-cols-3">
+    <div ref={container} className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
       {valores.map((valor) => (
         <div key={valor.titulo} className="valor-card">
           <h3 className="font-display text-xl">{valor.titulo}</h3>
