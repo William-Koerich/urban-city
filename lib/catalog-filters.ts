@@ -64,3 +64,16 @@ export function toggleFacetHref(
 export function hasActiveFilters(params: CatalogParams): boolean {
   return FACETS.some((facet) => parseList(params[facet]).length > 0);
 }
+
+export type ChipAtivo = { facet: Facet; value: string; href: string };
+
+/** Todo par facet+valor ativo, cada um já com o link pra removê-lo sozinho — vira o chip removível acima da grade de produtos. */
+export function getActiveChips(params: CatalogParams): ChipAtivo[] {
+  return FACETS.flatMap((facet) =>
+    parseList(params[facet]).map((value) => ({
+      facet,
+      value,
+      href: toggleFacetHref(params, facet, value),
+    }))
+  );
+}

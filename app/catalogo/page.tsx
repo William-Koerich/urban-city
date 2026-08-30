@@ -8,7 +8,7 @@ import {
   getCategorias,
   getColecoes,
   getGeneros,
-  getCores,
+  getCoresComHex,
 } from "@/lib/data/products";
 import { filtrarProdutos, type CatalogParams } from "@/lib/catalog-filters";
 
@@ -35,13 +35,14 @@ export default async function CatalogoPage({
           description="Cada item aqui é um produto real, com referência e grade próprias — cadastrado exatamente como sai da fábrica."
         />
 
-        <div className="mt-10 border-y border-line py-6">
+        <div className="mt-10">
           <CatalogFilters
             params={params}
             categorias={getCategorias()}
             colecoes={getColecoes()}
             generos={getGeneros()}
-            cores={getCores()}
+            cores={getCoresComHex()}
+            total={resultado.length}
           />
         </div>
 

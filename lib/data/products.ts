@@ -212,8 +212,15 @@ export function getGeneros(): string[] {
   return Array.from(new Set(produtos.map((p) => p.genero))).sort();
 }
 
-export function getCores(): string[] {
-  return Array.from(
-    new Set(produtos.flatMap((p) => p.cores.map((c) => c.nome)))
-  ).sort();
+/** Uma linha por nome de cor único, com o hex pra desenhar o swatch no filtro. */
+export function getCoresComHex(): { nome: string; hex: string }[] {
+  const porNome = new Map<string, string>();
+  for (const p of produtos) {
+    for (const c of p.cores) {
+      if (!porNome.has(c.nome)) porNome.set(c.nome, c.hex);
+    }
+  }
+  return Array.from(porNome, ([nome, hex]) => ({ nome, hex })).sort((a, b) =>
+    a.nome.localeCompare(b.nome)
+  );
 }
