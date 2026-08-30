@@ -21,6 +21,7 @@ export function ProductViewer({ produto }: { produto: Produto }) {
   }, [produto.slug, produto.nome]);
 
   const cor = produto.cores[corIndex];
+  const temManga = produto.tamanhos[0]?.medidas.manga !== undefined;
 
   function selecionarCor(index: number) {
     setCorIndex(index);
@@ -135,21 +136,62 @@ export function ProductViewer({ produto }: { produto: Produto }) {
           </div>
         </div>
 
-        {/* Tabela de medidas */}
+        {/* Tabela de medidas — cards empilhados no mobile (nada de scroll
+            horizontal espremido), tabela normal a partir de sm. */}
         <div className="mt-8">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Tabela de medidas (cm)
           </p>
-          <div className="mt-3 overflow-x-auto rounded-xl border border-line">
-            <table className="w-full min-w-[420px] text-left text-sm">
+
+          <div className="mt-3 flex flex-col gap-2 sm:hidden">
+            {produto.tamanhos.map((t) => (
+              <div
+                key={t.sigla}
+                className={`rounded-xl border px-4 py-3 ${
+                  t.sigla === tamanho
+                    ? "border-foreground bg-background-alt"
+                    : "border-line"
+                }`}
+              >
+                <p className="font-display text-base">{t.sigla}</p>
+                <div
+                  className={`mt-2 grid gap-2 text-center text-xs ${
+                    temManga ? "grid-cols-3" : "grid-cols-2"
+                  }`}
+                >
+                  <div>
+                    <p className="text-muted">Largura</p>
+                    <p className="font-medium text-foreground/85">
+                      {t.medidas.largura}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-muted">Compr.</p>
+                    <p className="font-medium text-foreground/85">
+                      {t.medidas.comprimento}
+                    </p>
+                  </div>
+                  {temManga && (
+                    <div>
+                      <p className="text-muted">Manga</p>
+                      <p className="font-medium text-foreground/85">
+                        {t.medidas.manga}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-3 hidden overflow-hidden rounded-xl border border-line sm:block">
+            <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-line text-xs uppercase tracking-wide text-muted">
                   <th className="px-3 py-2">Tamanho</th>
                   <th className="px-3 py-2">Largura</th>
                   <th className="px-3 py-2">Comprimento</th>
-                  {produto.tamanhos[0]?.medidas.manga !== undefined && (
-                    <th className="px-3 py-2">Manga</th>
-                  )}
+                  {temManga && <th className="px-3 py-2">Manga</th>}
                 </tr>
               </thead>
               <tbody>
@@ -163,9 +205,7 @@ export function ProductViewer({ produto }: { produto: Produto }) {
                     <td className="px-3 py-2">{t.sigla}</td>
                     <td className="px-3 py-2">{t.medidas.largura}</td>
                     <td className="px-3 py-2">{t.medidas.comprimento}</td>
-                    {t.medidas.manga !== undefined && (
-                      <td className="px-3 py-2">{t.medidas.manga}</td>
-                    )}
+                    {temManga && <td className="px-3 py-2">{t.medidas.manga}</td>}
                   </tr>
                 ))}
               </tbody>
