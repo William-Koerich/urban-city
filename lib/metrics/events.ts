@@ -28,6 +28,9 @@ export type NovoEvento = {
   geoPais?: string;
   geoEstado?: string;
   geoCidade?: string;
+  geoCep?: string;
+  geoLat?: string;
+  geoLon?: string;
 };
 
 export async function registrarEvento(evento: NovoEvento): Promise<void> {
@@ -35,8 +38,8 @@ export async function registrarEvento(evento: NovoEvento): Promise<void> {
   await db.execute({
     sql: `INSERT INTO eventos
       (tipo, pagina, produto_slug, produto_nome, representante_id, representante_nome,
-       detalhe, origem, sessao_id, geo_pais, geo_estado, geo_cidade)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       detalhe, origem, sessao_id, geo_pais, geo_estado, geo_cidade, geo_cep, geo_lat, geo_lon)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     args: [
       evento.tipo,
       evento.pagina ?? null,
@@ -50,6 +53,9 @@ export async function registrarEvento(evento: NovoEvento): Promise<void> {
       evento.geoPais ?? null,
       evento.geoEstado ?? null,
       evento.geoCidade ?? null,
+      evento.geoCep ?? null,
+      evento.geoLat ?? null,
+      evento.geoLon ?? null,
     ],
   });
 }

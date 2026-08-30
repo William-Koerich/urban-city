@@ -63,6 +63,9 @@ const MIGRACOES_EVENTOS = [
   "ALTER TABLE eventos ADD COLUMN geo_pais TEXT",
   "ALTER TABLE eventos ADD COLUMN geo_estado TEXT",
   "ALTER TABLE eventos ADD COLUMN geo_cidade TEXT",
+  "ALTER TABLE eventos ADD COLUMN geo_cep TEXT",
+  "ALTER TABLE eventos ADD COLUMN geo_lat TEXT",
+  "ALTER TABLE eventos ADD COLUMN geo_lon TEXT",
 ];
 
 async function criarSchema(db: Client): Promise<void> {
@@ -86,6 +89,9 @@ async function criarSchema(db: Client): Promise<void> {
       geo_pais TEXT,
       geo_estado TEXT,
       geo_cidade TEXT,
+      geo_cep TEXT,
+      geo_lat TEXT,
+      geo_lon TEXT,
       criado_em TEXT NOT NULL DEFAULT (datetime('now'))
     );
     CREATE INDEX IF NOT EXISTS idx_eventos_tipo ON eventos(tipo);

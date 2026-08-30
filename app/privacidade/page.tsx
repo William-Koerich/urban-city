@@ -16,7 +16,7 @@ const secoes = [
   {
     titulo: "2. Quais dados coletamos",
     texto:
-      "Dados de navegação (páginas visitadas, sequência de páginas dentro da mesma visita, origem do acesso — Google, Instagram, direto), localização aproximada (país/estado/cidade, calculada a partir do endereço IP — não coletamos localização precisa de GPS nem pedimos permissão de localização do navegador), e dados fornecidos voluntariamente em formulários, como nome, email e telefone.",
+      "Dados de navegação (páginas visitadas, sequência de páginas dentro da mesma visita, origem do acesso — Google, Instagram, direto), localização aproximada (país, estado, cidade, CEP e coordenadas de latitude/longitude, todos calculados a partir do endereço IP — têm precisão de cidade, não de endereço; não coletamos localização de GPS nem pedimos permissão de localização do navegador), e dados fornecidos voluntariamente em formulários, como nome, email e telefone.",
   },
   {
     titulo: "3. Para que usamos os dados",

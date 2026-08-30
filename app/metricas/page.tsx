@@ -106,11 +106,22 @@ export default async function MetricasPage() {
             vazio="Ainda sem dados de origem."
           />
           <BarList
-            titulo="De onde o acesso vem (por IP)"
+            titulo="Estado de acesso (por IP)"
             dados={dados.estadosDeAcesso}
             vazio="Sem dados de localização ainda — só disponível quando o site está publicado (a Vercel injeta a região, local não tem)."
           />
+          <BarList
+            titulo="Cidade de acesso (por IP)"
+            dados={dados.cidadesDeAcesso}
+            vazio="Sem dados de cidade ainda — só disponível quando o site está publicado."
+          />
         </div>
+        <p className="mt-2 text-xs text-muted">
+          Cidade, CEP e coordenadas vêm do IP, sem pedir permissão de
+          localização a ninguém — por isso são aproximados (nível de cidade,
+          não endereço exato). Clique numa cidade pra abrir a coordenada no
+          mapa.
+        </p>
 
         <div className="mt-10 rounded-2xl border border-line p-6">
           <h3 className="font-display text-lg">Candidaturas de representante</h3>

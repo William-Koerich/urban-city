@@ -21,7 +21,18 @@ export function BarList({
           {dados.map((d) => (
             <li key={d.chave}>
               <div className="flex items-baseline justify-between gap-2 text-sm">
-                <span className="truncate">{d.rotulo || d.chave}</span>
+                {d.href ? (
+                  <a
+                    href={d.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="truncate underline underline-offset-2 hover:text-accent"
+                  >
+                    {d.rotulo || d.chave}
+                  </a>
+                ) : (
+                  <span className="truncate">{d.rotulo || d.chave}</span>
+                )}
                 <span className="shrink-0 font-medium">{d.total}</span>
               </div>
               <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-background-alt">

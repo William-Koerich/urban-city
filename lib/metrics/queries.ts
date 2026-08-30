@@ -2,7 +2,12 @@ import "server-only";
 import type { Client, Row } from "@libsql/client";
 import { getDb } from "@/lib/db";
 
-export type Contagem = { chave: string; rotulo: string; total: number };
+export type Contagem = {
+  chave: string;
+  rotulo: string;
+  total: number;
+  href?: string;
+};
 
 function paraContagem(row: Row): Contagem {
   return {
@@ -139,6 +144,43 @@ async function porEstadoGeo(db: Client, limite = 10): Promise<Contagem[]> {
   return rows.map(paraContagem);
 }
 
+/**
+ * Cidade é o nível mais fino que dá pra ter sem pedir permissão de
+ * localização ao visitante — junto com CEP e lat/lon (achados por sessão via
+ * MIN, já que toda visita da mesma cidade cai nas mesmas coordenadas do
+ * IP), o suficiente pra plotar num mapa depois, se quiser.
+ */
+async function porCidade(db: Client, limite = 10): Promise<Contagem[]> {
+  const { rows } = await db.execute({
+    sql: `SELECT
+            geo_cidade as cidade,
+            geo_estado as estado,
+            MIN(geo_cep) as cep,
+            MIN(geo_lat) as lat,
+            MIN(geo_lon) as lon,
+            COUNT(DISTINCT sessao_id) as total
+          FROM eventos
+          WHERE geo_cidade IS NOT NULL
+          GROUP BY geo_cidade, geo_estado
+          ORDER BY total DESC
+          LIMIT ?`,
+    args: [limite],
+  });
+  return rows.map((r) => {
+    const cidade = String(r.cidade);
+    const estado = r.estado != null ? String(r.estado) : undefined;
+    const lat = r.lat != null ? String(r.lat) : undefined;
+    const lon = r.lon != null ? String(r.lon) : undefined;
+    const cep = r.cep != null ? String(r.cep) : undefined;
+    return {
+      chave: `${cidade}-${estado ?? ""}`,
+      rotulo: `${cidade}${estado ? ` · ${estado}` : ""}${cep ? ` · ${cep}` : ""}`,
+      total: Number(r.total),
+      href: lat && lon ? `https://www.google.com/maps?q=${lat},${lon}` : undefined,
+    };
+  });
+}
+
 export async function getMetricas() {
   const db = await getDb();
   const porTipo = await contarPorTipo(db);
@@ -155,6 +197,7 @@ export async function getMetricas() {
     sessoes,
     paginasVistas,
     estadosDeAcesso,
+    cidadesDeAcesso,
   ] = await Promise.all([
     topProdutos(db, "visualizacao_produto"),
     topProdutos(db, "whatsapp_produto"),
@@ -167,6 +210,7 @@ export async function getMetricas() {
     contarSessoes(db),
     paginasMaisVistas(db),
     porEstadoGeo(db),
+    porCidade(db),
   ]);
 
   const visualizacoes = porTipo["visualizacao_produto"] ?? 0;
@@ -193,6 +237,7 @@ export async function getMetricas() {
     origemTrafego,
     paginasMaisVistas: paginasVistas,
     estadosDeAcesso,
+    cidadesDeAcesso,
     evolucaoDiaria,
     candidaturas,
   };

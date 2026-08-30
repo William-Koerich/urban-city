@@ -21,7 +21,8 @@ export async function POST(request: NextRequest) {
 
   // Fora da Vercel (dev local, outro host) isso volta tudo `undefined` —
   // não quebra, só fica sem o dado de região.
-  const { city, country, countryRegion } = geolocation(request);
+  const { city, country, countryRegion, postalCode, latitude, longitude } =
+    geolocation(request);
 
   try {
     await registrarEvento({
@@ -37,6 +38,9 @@ export async function POST(request: NextRequest) {
       geoPais: country,
       geoEstado: countryRegion,
       geoCidade: city,
+      geoCep: postalCode,
+      geoLat: latitude,
+      geoLon: longitude,
     });
   } catch (err) {
     console.error("Falha ao registrar evento de métrica:", err);
