@@ -7,7 +7,7 @@ export const representantes: Representante[] = [
     regiao: "Sudeste",
     estado: "SP",
     cidade: "São Paulo",
-    whatsapp: "5511987654321",
+    whatsapp: "5547996348990",
     instagram: "fernanda.uc",
   },
   {
@@ -16,7 +16,7 @@ export const representantes: Representante[] = [
     regiao: "Sudeste",
     estado: "RJ",
     cidade: "Rio de Janeiro",
-    whatsapp: "5521987654321",
+    whatsapp: "5547996348990",
     instagram: "marcos.uc",
   },
   {
@@ -25,7 +25,7 @@ export const representantes: Representante[] = [
     regiao: "Sul",
     estado: "RS",
     cidade: "Porto Alegre",
-    whatsapp: "5551987654321",
+    whatsapp: "5547996348990",
     instagram: "juliana.uc",
   },
   {
@@ -34,7 +34,7 @@ export const representantes: Representante[] = [
     regiao: "Sul",
     estado: "PR",
     cidade: "Curitiba",
-    whatsapp: "5541987654321",
+    whatsapp: "5547996348990",
     instagram: "rafael.uc",
   },
   {
@@ -43,7 +43,7 @@ export const representantes: Representante[] = [
     regiao: "Nordeste",
     estado: "BA",
     cidade: "Salvador",
-    whatsapp: "5571987654321",
+    whatsapp: "5547996348990",
     instagram: "camila.uc",
   },
   {
@@ -52,7 +52,7 @@ export const representantes: Representante[] = [
     regiao: "Nordeste",
     estado: "PE",
     cidade: "Recife",
-    whatsapp: "5581987654321",
+    whatsapp: "5547996348990",
     instagram: "diego.uc",
   },
   {
@@ -61,7 +61,7 @@ export const representantes: Representante[] = [
     regiao: "Centro-Oeste",
     estado: "GO",
     cidade: "Goiânia",
-    whatsapp: "5562987654321",
+    whatsapp: "5547996348990",
     instagram: "patricia.uc",
   },
   {
@@ -70,7 +70,7 @@ export const representantes: Representante[] = [
     regiao: "Norte",
     estado: "PA",
     cidade: "Belém",
-    whatsapp: "5591987654321",
+    whatsapp: "5547996348990",
     instagram: "bruno.uc",
   },
   {
@@ -79,7 +79,7 @@ export const representantes: Representante[] = [
     regiao: "Sudeste",
     estado: "MG",
     cidade: "Belo Horizonte",
-    whatsapp: "5531987654321",
+    whatsapp: "5547996348990",
     instagram: "larissa.uc",
   },
 ];
