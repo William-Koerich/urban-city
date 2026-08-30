@@ -181,7 +181,12 @@ export function RepFinder({
                   href={linkWhatsapp(r.whatsapp, mensagemPara(produtoAtivo))}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => handleWhatsapp(r)}
+                  // No celular, tocar num link wa.me/instagram.com troca de
+                  // app quase instantaneamente (universal link) — rápido
+                  // demais para o beacon do onClick sair antes da aba ser
+                  // suspensa. onPointerDown dispara no toque (antes do
+                  // dedo soltar), dando tempo real do evento sair.
+                  onPointerDown={() => handleWhatsapp(r)}
                   className="flex-1 rounded-full bg-foreground px-4 py-2 text-center text-xs font-medium uppercase tracking-wide text-background"
                 >
                   WhatsApp
@@ -190,7 +195,7 @@ export function RepFinder({
                   href={linkInstagram(r.instagram)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => handleInstagram(r)}
+                  onPointerDown={() => handleInstagram(r)}
                   className="flex-1 rounded-full border border-line px-4 py-2 text-center text-xs font-medium uppercase tracking-wide hover:border-foreground/50"
                 >
                   Instagram
